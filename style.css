@@ -1,0 +1,901 @@
+/* --- RESET & ROOT VARIABLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --hijau-hutan: #2E7D32;
+    --cokelat-tanah: #5D4037;
+    --krem-fosil: #F5F5DC;
+    --abu-batu: #616161;
+    --overlay-gelap: rgba(18, 24, 19, 0.75);
+    --font-heading: 'Marcellus', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 20px 40px rgba(46, 125, 50, 0.15);
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: #faf9f5;
+    color: #2c2c2c;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- REUSABLE COMPONENTS --- */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--cokelat-tanah);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.section-desc {
+    text-align: center;
+    color: var(--abu-batu);
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1rem;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--krem-fosil);
+    overflow: hidden;
+}
+
+.hero-video{
+    position:absolute;
+    top:50%;
+    left:50%;
+    min-width:100%;
+    min-height:100%;
+    transform:translate(-50%,-50%);
+    object-fit:cover;
+    z-index:0;
+}
+
+.hero-overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.btn-main {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--hijau-hutan);
+    color: var(--krem-fosil);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+}
+
+.btn-main:hover {
+    background-color: transparent;
+    border-color: var(--krem-fosil);
+    transform: translateY(-3px);
+}
+
+/* --- TENTANG DINOSAURUS --- */
+.about{
+    padding:100px 0;
+    background:
+    linear-gradient(
+        rgba(27,94,32,0.85),
+        rgba(46,125,50,0.85)
+    ),
+    url("images/jungle-bg.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.about .section-title{
+    color:white;
+}
+
+.about .section-desc{
+    color:#f5f5f5;
+}
+
+.dino-walk{
+    text-align:center;
+    font-size:2rem;
+    margin:15px 0 25px;
+    animation:walk 8s linear infinite;
+}
+
+@keyframes walk{
+    0%{
+        transform:translateX(-30px);
+    }
+    50%{
+        transform:translateX(30px);
+    }
+    100%{
+        transform:translateX(-30px);
+    }
+}
+
+.diet-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.diet-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    border-bottom: 4px solid var(--abu-batu);
+}
+
+.diet-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+    border-bottom-color: var(--hijau-hutan);
+}
+
+.diet-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.diet-card h3 {
+    font-family: var(--font-heading);
+    color: var(--cokelat-tanah);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* ===== TIMELINE MODERN ===== */
+
+.timeline-section{
+    padding:100px 0;
+    background:rgb(156, 192, 121);
+}
+
+.timeline{
+    position:relative;
+    max-width:900px;
+    margin:auto;
+}
+
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:50%;
+    top:0;
+    width:6px;
+    height:100%;
+    background:linear-gradient(
+        #4CAF50,
+        #8BC34A,
+        #CDDC39
+    );
+    transform:translateX(-50%);
+    border-radius:10px;
+}
+
+.timeline-item{
+    position:relative;
+    width:50%;
+    padding:20px 40px;
+    margin-bottom:40px;
+}
+
+.timeline-item:nth-child(odd){
+    left:0;
+    text-align:right;
+}
+
+.timeline-item:nth-child(even){
+    left:50%;
+}
+
+.timeline-content{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    transition:0.4s;
+}
+
+.timeline-content:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.timeline-icon{
+    position:absolute;
+    top:25px;
+    width:60px;
+    height:60px;
+    background:#2E7D32;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.8rem;
+    z-index:2;
+}
+
+.timeline-item:nth-child(odd) .timeline-icon{
+    right:-30px;
+}
+
+.timeline-item:nth-child(even) .timeline-icon{
+    left:-30px;
+}
+
+.timeline-content h3{
+    color:#2E7D32;
+    margin-bottom:10px;
+    font-size:1.5rem;
+}
+
+.timeline-content h4{
+    color:#795548;
+    margin-bottom:10px;
+}
+
+
+/* --- GALERI DINOSAURUS --- */
+.gallery-section{
+    padding:100px 0;
+    background:linear-gradient(
+        135deg,
+        #e8f5e9,
+        #c8e6c9,
+        #a5d6a7
+    );
+}
+
+.gallery-section .section-title{
+    color:#1b5e20;
+}
+
+.gallery-section .section-desc{
+    color:#33691e;
+}
+
+.gallery-title{
+    color:rgb(2, 0, 0);
+    font-size:3rem;
+    text-shadow:0 0 20px rgba(76,175,80,.8);
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.dino-card{
+    background:rgba(255,255,255,0.95);
+    border-radius:20px;
+    overflow:hidden;
+
+    transition:0.5s;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.2);
+
+    position:relative;
+}
+
+.dino-card:hover{
+    transform:
+        translateY(-15px)
+        scale(1.03);
+
+    box-shadow:
+        0 20px 40px rgba(76,175,80,.35);
+}
+
+.dino-img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    display:block;
+}
+
+.dino-info{
+    padding:20px;
+}
+
+.badge{
+    display:inline-block;
+    margin:5px 5px 10px 0;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.tag-period{
+    background:#dff5e1;
+}
+
+.tag-diet{
+    background:#ffe8cc;
+}
+
+.dino-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* --- FAKTA MENARIK --- */
+.facts-section{
+    padding:100px 0;
+    background:linear-gradient(
+        135deg,
+        #bf360c,
+        #d84315,
+        #ff7043
+    );
+    color:white;
+}
+
+.facts-section .section-title {
+    color: var(--krem-fosil);
+}
+
+.facts-section .section-desc {
+    color: #b2dfdb;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.fact-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px 30px;
+    border-radius: 16px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+}
+
+.fact-num {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--krem-fosil);
+    opacity: 0.3;
+    margin-bottom: 10px;
+}
+
+/* --- QUIZ EDUKASI --- */
+.quiz-section{
+    padding:100px 0;
+    background:linear-gradient(
+        135deg,
+        #0f2027,
+        #203a43,
+        #2c5364
+    );
+}
+
+.quiz-section .section-title{
+    color:white;
+}
+
+.quiz-section .section-desc{
+    color:#d6eaf8;
+}
+
+.quiz-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    border: 1px solid #e0decb;
+}
+
+.quiz-badge {
+    background-color: var(--cokelat-tanah);
+    color: var(--krem-fosil);
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.quiz-box h2 {
+    font-family: var(--font-heading);
+    margin: 20px 0 10px 0;
+}
+
+.question {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: var(--abu-batu);
+}
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.option-btn {
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: none;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.option-btn:hover {
+    border-color: var(--hijau-hutan);
+    background-color: #f1f8e9;
+}
+
+.option-btn.correct {
+    background-color: #4caf50 !important;
+    color: white;
+    border-color: #4caf50;
+}
+
+.option-btn.wrong {
+    background-color: #f44336 !important;
+    color: white;
+    border-color: #f44336;
+}
+
+.quiz-result {
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: none;
+}
+
+.quiz-result.visible {
+    display: block;
+}
+
+.quiz-result.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.quiz-result.error {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #1a1512;
+    color: #a8a29e;
+    padding: 60px 0 30px 0;
+    text-align: center;
+}
+
+footer h3 {
+    font-family: var(--font-heading);
+    color: var(--krem-fosil);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.footer-line {
+    width: 60px;
+    height: 2px;
+    background-color: var(--hijau-hutan);
+    margin: 20px auto;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+/* --- RESPONSIVE DESIGN (HP & TABLET) --- */
+.era-title{
+    text-align:center;
+    font-size:2.5rem;
+    margin-bottom:40px;
+    animation:pulseEra 2s infinite;
+}
+
+@keyframes pulseEra{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+.extinction{
+    height:180px;
+    position:relative;
+    overflow:hidden;
+    background:#0f2027;
+}
+
+.asteroid{
+    position:absolute;
+    top:20px;
+    right:-50px;
+    font-size:3rem;
+    animation:fall 5s linear infinite;
+}
+
+.dino{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    font-size:4rem;
+}
+
+@keyframes fall{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(-1000px,300px);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        flex-direction: row !important;
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .timeline-content {
+        width: calc(100% - 80px);
+    }
+
+    .timeline-badge {
+        width: 60px;
+        height: 60px;
+        font-size: 0.8rem;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+    }
+}
+/* ===== STATISTIK DINOSAURUS ===== */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-bottom:50px;
+}
+
+.stat-box{
+    background:linear-gradient(
+        135deg,
+        #2E7D32,
+        #4CAF50
+    );
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    transition:.4s;
+}
+
+.stat-box:hover{
+    transform:translateY(-10px);
+}
+
+.stat-box h3{
+    font-size:3rem;
+    margin-bottom:10px;
+    font-weight:700;
+}
+
+.stat-box p{
+    font-size:1rem;
+}
+
+.dino-card-link{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.diet-link{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.diet-link:hover{
+    transform: translateY(-5px);
+}
+
+.timeline-link{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.timeline-link:nth-child(2) .timeline-item{
+    margin-left: auto;
+}
+
+.timeline-link:hover{
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+
+.jura-link .timeline-icon{
+    left: -30px;
+}
+
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+}
+
+.logo{
+    font-size: 32px;
+    font-weight: 700;
+    color: #00ffd5;
+}
+
+.logo span{
+    color: #7CFC00;
+}
+
+.nav-links{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.nav-links a:hover{
+    color: #7CFC00;
+}
+
+.contact {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    margin-bottom: 30px;
+}
+
+/* From Uiverse.io by 889super */ 
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.up {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.down {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+.card1 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 90px 5px 5px 5px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.2s ease-in-out;
+}
+
+.whatsapp {
+  margin-top: 1.5em;
+  margin-left: 1.2em;
+  fill: #16c716;
+}
+.card2 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 90px 5px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.instagram {
+  margin-top: 2.5em;
+  margin-left: 0.5em;
+  fill: #cc39a4;
+}
+
+.card3 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 5px 5px 90px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.2s ease-in-out;
+}
+
+.github {
+  margin-top: -0.6em;
+  margin-left: 1.2em;
+}
+
+.card4 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 5px 90px 5px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.2s ease-in-out;
+}
+
+.discord {
+  margin-top: -0.9em;
+  margin-left: -1.2em;
+  fill: #8c9eff;
+}
+
+.card1:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #00ff00;
+}
+
+.card1:hover .whatsapp {
+    fill: white;
+}
+
+.card2:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #cc39a4;
+}
+
+.card2:hover .instagram {
+  fill: white;
+}
+
+.card3:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: black;
+}
+
+.card3:hover .github {
+  fill: white;
+}
+
+.card4:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #8c9eff;
+}
+
+.card4:hover .discord {
+  fill: white;
+}
